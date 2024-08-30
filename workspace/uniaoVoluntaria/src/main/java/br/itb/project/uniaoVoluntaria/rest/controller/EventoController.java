@@ -56,6 +56,15 @@ public class EventoController {
 			return new ResponseEntity<Evento> (evento, HttpStatus.OK);
 		}
 		
+		
+		@PutMapping("ativar/{id}")
+		public ResponseEntity<Evento> ativar(@PathVariable long id) {
+			Evento evento = eventoService.inativar(id);
+			
+			return new ResponseEntity<Evento> (evento, HttpStatus.OK);
+		}
+		
+		
 		@PutMapping("alterarInfo/{id}")
 		public ResponseEntity<Evento> alterarInfo(@PathVariable long id, @RequestBody Evento evento) {
 			Evento _evento = eventoService.alterarInfo(id, evento);

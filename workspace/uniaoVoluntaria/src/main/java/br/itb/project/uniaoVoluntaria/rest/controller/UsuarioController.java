@@ -77,6 +77,13 @@ public class UsuarioController {
 		
 		return new ResponseEntity<Usuario> (usuario, HttpStatus.OK);
 	}
+	@PutMapping("ativar/{id}")
+	public ResponseEntity<Usuario> ativar(@PathVariable long id) {
+		Usuario usuario = usuarioService.ativar(id);
+		
+		return new ResponseEntity<Usuario> (usuario, HttpStatus.OK);
+	}
+	
 
 	@PutMapping("alterarSenha/{id}")
 	public ResponseEntity<Usuario> alterarSenha(@PathVariable long id, @RequestBody Usuario usuario) {

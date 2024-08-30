@@ -74,6 +74,19 @@ public class UsuarioService {
 		return null;
 	}
 	
+
+	@Transactional
+	public Usuario ativar(long id) {
+		Optional<Usuario> _usuario = usuarioRepository.findById(id);
+		if (_usuario.isPresent()) {
+			Usuario usuarioAtualizado = _usuario.get();
+			usuarioAtualizado.setStatusUsuario("ATIVO");
+			
+			return usuarioRepository.save(usuarioAtualizado);
+		}
+		return null;
+	}
+	
 	@Transactional
 	public Usuario alterarSenha(long id,Usuario usuario) {
 		Optional<Usuario> _usuario = usuarioRepository.findById(id);

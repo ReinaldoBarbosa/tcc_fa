@@ -50,6 +50,19 @@ public class EventoService {
 		}
 		return null;
 	}
+	
+	@Transactional
+	public Evento ativar(long id) {
+		Optional<Evento> _evento = eventoRepository.findById(id);
+		if (_evento.isPresent()) {
+			Evento eventoAtualizado = _evento.get();
+			eventoAtualizado.setStatusEvento("ATIVO");
+			
+			return eventoRepository.save(eventoAtualizado);
+		}
+		return null;
+	}
+	
 	@Transactional
 	public Evento alterarInfo(long id,Evento evento) {
 		Optional<Evento> _evento = eventoRepository.findById(id);
